@@ -4,17 +4,22 @@ Compose is a tool for defining and running multi-container Docker applications. 
 [Detail](https://docs.docker.com/compose/overview/)
 
 ## Example
-> **Note:** We use official nginx image. [Detail](https://hub.docker.com/_/nginx/)
+> **Note:** We use official python image. [Detail](https://hub.docker.com/_/python/)
 
 ```yaml
 version: "3" # (1)
 services:
-  nginx: # (2)
-    image: nginx:1.13.9 # Name image and tag in hub.docker.com.
-    
+  example: # (3)
+    image: python:3 # (2)
+  example2:
+    image: python:2
 ```
 
-1. The name of our service. We can use it as a dns name inside other containers described in our file.
+**1.** Compose file format version. Last version 3.6 [Detail](https://docs.docker.com/compose/compose-file/).
+**2.** Name image and tag. Default use [hub.docker.com](http://hub.docker.com). Example for custom host: `hub.ds.inprogress.rocks/djangostars-site/django`
+**3.** The name of our service. We can use it as a dns name inside other containers described in our file.
+```bash
+```
 
 
 # Intro to Dockerfile
