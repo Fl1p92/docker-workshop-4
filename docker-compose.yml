@@ -1,0 +1,27 @@
+version: '3.7'
+
+volumes:
+  postgres_data: {}
+
+services:
+  example:
+    image: chat-django:dev
+    build: .
+    ports:
+    - "127.0.0.1:0080:8000"
+    depends_on:
+    - postgres
+    - redis
+    volumes:
+    - ./src:/usr/local/code/src
+    environment:
+      - DATABASE_URL=postgresql://eugene:Password92@postgres:5432/example_db
+      - CHANNEL_LAYERS_HOST=redis
+
+  postgres:
+    image: postgres:10.5
+    volumes:
+    - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis
